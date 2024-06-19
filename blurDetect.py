@@ -63,12 +63,22 @@ def list_directories_in_directory(directory_path):
         print(f"An error occurred: {e}")
 
 
+#Main Loop Start
+while True:
+    sameProject = input("Is this a new project to check for blur Y/N: ")
+    if sameProject not in ['Y','N']:
+        continue
+    if sameProject == 'Y':
+        df = pd.read_csv("out.csv")
+        break
+    else:
+        d = {'fileName':[], 'blurLev': [], 'N': [], 'W':[]}
+        df = pd.DataFrame(data=d)
+        break
 
 
-d = {'fileName':[], 'blurLev': [], 'N': [], 'W':[]}
-df = pd.DataFrame(data=d)
-
-direct = "D:/DCIM/"
+dirName = input("What is the Letter Name of the SD Card(D, F, E, etc.): ")
+direct = "{}:/DCIM/".format(dirName)
 for folder in list_directories_in_directory(direct):
     directInt = ""+direct+folder+"/"
     for each in (list_files(directInt)):
